@@ -348,6 +348,11 @@
    DeepLabCut M1 chip installation environment instructions:
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-confirm-that-your-gpu-is-being-used-by-deeplabcut">
+   How to confirm that your GPU is being used by DeepLabCut
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -615,6 +620,19 @@ For more examples and ideas, visit:
 <p>(6) Next, launch DLC with <code class="docutils literal notranslate"><span class="pre">pythonw</span> <span class="pre">-m</span> <span class="pre">deeplabcut</span></code></p>
 <p>GUI will open!</p>
 <p>Note: Based on issue #1380 thanks!</p>
+</div>
+<div class="section" id="how-to-confirm-that-your-gpu-is-being-used-by-deeplabcut">
+<h2>How to confirm that your GPU is being used by DeepLabCut<a class="headerlink" href="#how-to-confirm-that-your-gpu-is-being-used-by-deeplabcut" title="Permalink to this headline">¶</a></h2>
+<p>During training and analysis steps, DeepLabCut does not use the GPU processor heavily. To confirm that DeepLabCut is properly using your GPU:</p>
+<p><strong>On Windows</strong>:</p>
+<p>(1) Open the task manager. If it looks like the image below, click on “More Details”</p>
+<p><img alt="taskManager" src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/taskManager.png" /></p>
+<p>(2) That will bring up the following, which still isn’t helpful and has caused confusion for users. The %GPU does not reflect DeepLabCut usage.</p>
+<p><img alt="taskManagerDetails" src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/TaskManagerDetails.png" /></p>
+<p>(3) Click on the <strong>Performance</strong> tab. On that page, click on the small arrow under GPU (it might start as <strong>3D</strong>, and change it to <strong>CUDA</strong>.</p>
+<p>(4) During training, you should see the <strong>Dedicated GPU memory usage</strong> increase to near maximum, and you should see some activity in the <strong>CUDA</strong> graph. The graph below is the activity while running <code class="docutils literal notranslate"><span class="pre">testscript.py</span></code>.</p>
+<p><img alt="TaskManger during training" src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/taskManagerTraining.png" /></p>
+<p>(5) If you don’t see activity there during training, then your GPU is likely not installed correctly for DeepLabCut. Return to the installation instructions, and be sure you installed CUDA 11+, and ran <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">cudnn</span> <span class="pre">-c</span> <span class="pre">conda-forge</span></code> after installing DeepLabCut.</p>
 </div>
 </div>
 
