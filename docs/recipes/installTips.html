@@ -626,12 +626,12 @@ For more examples and ideas, visit:
 <p>During training and analysis steps, DeepLabCut does not use the GPU processor heavily. To confirm that DeepLabCut is properly using your GPU:</p>
 <p><strong>On Windows</strong>:</p>
 <p>(1) Open the task manager. If it looks like the image below, click on “More Details”</p>
-<p><img alt="taskManager" src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/taskManager.png?format=750w" /></p>
+<img src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/taskManager.png" width="50%">
 <p>(2) That will bring up the following, which still isn’t helpful and has caused confusion for users. The %GPU does not reflect DeepLabCut usage.</p>
-<p><img alt="taskManagerDetails" src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/TaskManagerDetails.png?format=750w" /></p>
+<img src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/TaskManagerDetails.png" width="50%">
 <p>(3) Click on the <strong>Performance</strong> tab. On that page, click on the small arrow under GPU (it might start as <strong>3D</strong>, and change it to <strong>CUDA</strong>.</p>
 <p>(4) During training, you should see the <strong>Dedicated GPU memory usage</strong> increase to near maximum, and you should see some activity in the <strong>CUDA</strong> graph. The graph below is the activity while running <code class="docutils literal notranslate"><span class="pre">testscript.py</span></code>.</p>
-<p><img alt="TaskManger during training" src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/taskManagerTraining.png?format=1500w" /></p>
+<img src="https://github.com/backyardbiomech/docImages/blob/main/DeepLabCut/taskManagerTraining.png" width="70%">
 <p>(5) If you don’t see activity there during training, then your GPU is likely not installed correctly for DeepLabCut. Return to the installation instructions, and be sure you installed CUDA 11+, and ran <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">cudnn</span> <span class="pre">-c</span> <span class="pre">conda-forge</span></code> after installing DeepLabCut.</p>
 </div>
 </div>
