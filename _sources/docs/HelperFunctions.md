@@ -1,3 +1,4 @@
+(helper-functions)=
 ## Helper & Advanced Optional Function Documentation
 
 ### There are additional functions that are not required, but can be extremely helpful. 
@@ -81,9 +82,9 @@ deeplabcut.export_model
 
 ### New! Model Export function:
 
-This function allows you to export a well-trained model for real-time applications, etc. 
+This function allows you to export a well-trained single animal model for real-time applications, etc. This function is part of [Kane et al, 2020 eLife](https://elifesciences.org/articles/61909). Please see the paper and related code-base on how to use this utility.
 
-- One such example use case is with the [Bonsai-DeepLabCut](https://github.com/bonsai-rx/deeplabcut) plug in. Namely, you need to first export your trained model from DLC, then follow the instructions for Bonsai-specific use.
+- Another example use case is with the [Bonsai-DeepLabCut](https://github.com/bonsai-rx/deeplabcut) plug in. Namely, you need to first export your trained model from DLC, then follow the instructions for Bonsai-specific use.
 
 ```python
 deeplabcut.export_model(cfg_path, iteration=None, shuffle=1, trainingsetindex=0, snapshotindex=None, TFGPUinference=True, overwrite=False, make_tar=True)
@@ -96,7 +97,8 @@ If you have multiple cameras, you may want to use epipolar lines projected on th
 
 In order to label with epipolar lines, you must complete two additional sets of steps **prior to labeling.**
 
-- First, you must create a 3d project and calibrate the cameras - to do so, complete steps 1-3: https://github.com/DeepLabCut/DeepLabCut/blob/master/docs/Overviewof3D.md. 
+- First, you must create a 3d project and calibrate the cameras - to do so, complete
+  steps 1-3 in [3D Overview](3D-overview).
 
 - Second, you must extract imagr from `camera_1` first; here you would have run the standard `deeplabcut.extract_frames(config_path, userfeedback=True)`, but just extract files from 1 camera. Next, you need to extract matching frames from `camera_2`:
 ```python

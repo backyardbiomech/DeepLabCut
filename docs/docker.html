@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mission and Values of DeepLabCut &#8212; DeepLabCut</title>
+    <title>DeepLabCut Docker containers &#8212; DeepLabCut</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="A development roadmap for DeepLabCut" href="roadmap.html" />
-    <link rel="prev" title="Intel OpenVINO backend" href="recipes/OpenVINO.html" />
+    <link rel="next" title="DeepLabCut User Guide (for single animal projects)" href="standardDeepLabCut_UserGuide.html" />
+    <link rel="prev" title="How To Install DeepLabCut" href="installation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
   Main Documentation
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="UseOverviewGuide.html">
    Documentation Overview:
@@ -114,8 +114,8 @@ const thebe_selector_output = ".output, .cell_output"
    How To Install DeepLabCut
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="docker.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    DeepLabCut Docker containers
   </a>
  </li>
@@ -214,9 +214,9 @@ const thebe_selector_output = ".output, .cell_output"
   Mission &amp; Contribute
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MISSION_AND_VALUES.html">
    Mission and Values of DeepLabCut
   </a>
  </li>
@@ -267,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/MISSION_AND_VALUES.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/docs/docker.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -287,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/DeepLabCut/DeepLabCut/issues/new?title=Issue%20on%20page%20%2Fdocs/MISSION_AND_VALUES.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/DeepLabCut/DeepLabCut/issues/new?title=Issue%20on%20page%20%2Fdocs/docker.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -314,23 +314,40 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#our-founding-principles">
-   Our founding principles
+  <a class="reference internal nav-link" href="#usage-modes">
+   Usage modes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gui-mode">
+     GUI mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminal-mode">
+     Terminal mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-notebook-mode">
+     Jupyter Notebook mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advanced-usage">
+     Advanced usage
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites-if-you-don-t-have-docker-installed-already">
+   Prerequisites (if you don’t have Docker installed already)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#our-mission">
-   Our mission
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#our-values">
-   Our values
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#acknowledgements">
-   Acknowledgements
+  <a class="reference internal nav-link" href="#notes-and-troubleshooting">
+   Notes and troubleshooting
   </a>
  </li>
 </ul>
@@ -343,7 +360,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Mission and Values of DeepLabCut</h1>
+                <h1>DeepLabCut Docker containers</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -354,23 +371,40 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#our-founding-principles">
-   Our founding principles
+  <a class="reference internal nav-link" href="#usage-modes">
+   Usage modes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gui-mode">
+     GUI mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminal-mode">
+     Terminal mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-notebook-mode">
+     Jupyter Notebook mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advanced-usage">
+     Advanced usage
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites-if-you-don-t-have-docker-installed-already">
+   Prerequisites (if you don’t have Docker installed already)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#our-mission">
-   Our mission
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#our-values">
-   Our values
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#acknowledgements">
-   Acknowledgements
+  <a class="reference internal nav-link" href="#notes-and-troubleshooting">
+   Notes and troubleshooting
   </a>
  </li>
 </ul>
@@ -382,52 +416,94 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="mission-and-values-of-deeplabcut">
-<span id="mission-and-values"></span><h1>Mission and Values of DeepLabCut<a class="headerlink" href="#mission-and-values-of-deeplabcut" title="Permalink to this headline">¶</a></h1>
-<p>This document is meant to help guide decisions about the future of <code class="docutils literal notranslate"><span class="pre">DeepLabCut</span></code>, be it in terms of
-whether to accept new functionality, changes to the styling of the code or graphical user interfaces (GUI),
-or whether to take on new dependencies, when to break into other repos, among other things. It serves as a point of reference for core developers actively working on the project, and an introduction for
-newcomers who want to learn a little more about where the project is going and what the team’s
-values are. You can also learn more about how the project is managed by looking at our <a class="reference internal" href="Governance.html#governance-model"><span class="std std-ref">governance model</span></a>.</p>
-<div class="section" id="our-founding-principles">
-<h2>Our founding principles<a class="headerlink" href="#our-founding-principles" title="Permalink to this headline">¶</a></h2>
-<p>The founding DeepLabCut team came together around a shared vision for building the first open-source animal pose estimation framework
-that is:</p>
-<ul class="simple">
-<li><p>user defined pose estimation - i.e. species or object agnostic.</p></li>
-<li><p>access to SOTA deep learning models that can be swiftly re-trained for customized applications</p></li>
-<li><p>fast (GPU-powered)</p></li>
-<li><p>scalable (project focused for ease of portability and sharability)</p></li>
-</ul>
-<p>As the project has grown we’ve turned these original principles into the mission statement and set of values that we described below.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="deeplabcut-docker-containers">
+<span id="docker-containers"></span><h1>DeepLabCut Docker containers<a class="headerlink" href="#deeplabcut-docker-containers" title="Permalink to this headline">¶</a></h1>
+<p>For DeepLabCut 2.2.0.2 and onwards, we provide container containers on <a class="reference external" href="https://hub.docker.com/r/deeplabcut/deeplabcut">DockerHub</a>. Using Docker is an alternative approach to using DeepLabCut, which only requires the user to install <a class="reference external" href="https://www.docker.com/">Docker</a> on your machine, vs. following the step-by-step installation guide for a Anaconda setup. All dependencies needed to run DeepLabCut in terminal or GUI mode, or running Jupyter notebooks with DeepLabCut pre-installed are shipped with the provided Docker images.</p>
+<p>Advanced users can directly head to <a class="reference external" href="https://hub.docker.com/r/deeplabcut/deeplabcut">DockerHub</a> and use the provided images there. To get started with using the images, we however also provide a helper tool, <code class="docutils literal notranslate"><span class="pre">deeplabcut-docker</span></code>, which makes the transition to docker images particularly convenient; to install the tool, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install deeplabcut-docker
+</pre></div>
 </div>
-<div class="section" id="our-mission">
-<h2>Our mission<a class="headerlink" href="#our-mission" title="Permalink to this headline">¶</a></h2>
-<p>DeepLabCut aims to be <strong>the animal pose software package for Python</strong> and to <strong>provide access to deep learning-based pose estimation for people to use in their daily work</strong> without the need to be able to program in a deep learning framework.
-We hope to accomplish this by:</p>
+<p>on your machine (potentially in a virtual environment, or an existing Anaconda environment).
+Note that this will <em>not</em> disprupt or install Tensorflow, or any other DeepLabCut dependencies on your computer—the Docker containers are completely isolated from your existing software installation!</p>
+<div class="section" id="usage-modes">
+<h2>Usage modes<a class="headerlink" href="#usage-modes" title="Permalink to this headline">¶</a></h2>
+<p>With <code class="docutils literal notranslate"><span class="pre">deeplabcut-docker</span></code>, you can use the images in three modes.</p>
 <ul class="simple">
-<li><p>being <strong>easy to use and install</strong>. We are careful in taking on new dependencies, sometimes making them optional, and aim support a fully (Python) packaged installation that works cross-platform.</p></li>
-<li><p>being <strong>well-documented</strong> with <strong>comprehensive tutorials and examples</strong>. All functions in our API have thorough docstrings clarifying expected inputs and outputs, and we maintain a separate <a class="reference external" href="http://deeplabcut.org">tutorials and information website</a>.</p></li>
-<li><p>providing <strong>GUI access</strong> to all critical functionality so DeepLabCut can be used by people without coding experience.</p></li>
-<li><p>being <strong>interactive</strong> and <strong>highly performant</strong> in order to support large data pipelines.</p></li>
-<li><p>providing a <strong>consistent and stable API</strong> to enable plugin developers to build on top of DeepLabCut without their code constantly breaking and to enable advanced users to build out sophisticated Python workflows, if needed.</p></li>
-<li><p><strong>ensuring correctness</strong>. We strive for complete test coverage of both the code and GUI, with all code reviewed by a core developer before being included in the repository.</p></li>
+<li><p><em>Note 1: When running any of the following commands first, it can take some time to complete (a few minutes, depending on your internet connection), since it downloads the Docker image in the background. If you do not see any errors in your terminal, assume that everything is working fine! Subsequent runs of the command will be faster.</em></p></li>
+<li><p><em>Note 2: The Terminal mode image can be used on all supported platforms (Linux and MacOS). The GUI images can only be considered stable on Linux systems as of DeepLabCut 2.2.0.2 and need additional configuration on Mac.</em></p></li>
+<li><p><em>Note 3: For any mode below, you might want to set which directory is the base, namely, so you can have read/write (or read-only access). Here is how to do so:
+If you want to mount the whole directory could e.g., pass</em></p></li>
 </ul>
+<p><code class="docutils literal notranslate"><span class="pre">deeplabcut-docker</span> <span class="pre">bash</span> <span class="pre">-v</span> <span class="pre">/home/mackenzie/DEEPLABCUT:/home/mackenzie/DEEPLABCUT</span></code></p>
+<p>(which will mount the full directory into the container in read/write mode)</p>
+<p>If read-only access is enough, <code class="docutils literal notranslate"><span class="pre">deeplabcut-docker</span> <span class="pre">bash</span> <span class="pre">-v</span> <span class="pre">/home/mackenzie/DEEPLABCUT:/home/mackenzie/DEEPLABCUT:ro</span></code></p>
+<div class="section" id="gui-mode">
+<h3>GUI mode<a class="headerlink" href="#gui-mode" title="Permalink to this headline">¶</a></h3>
+<p>To run DeepLabCut in GUI mode and start the DeepLabCut GUI, simply run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ deeplabcut-docker gui
+</pre></div>
 </div>
-<div class="section" id="our-values">
-<h2>Our values<a class="headerlink" href="#our-values" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>We are <strong>inclusive</strong>. We welcome newcomers who are making their first contribution and strive to grow our most dedicated contributors into <a class="reference external" href="https://github.com/orgs/DeepLabCut/teams/core-developers">core developers</a>. We have a <a class="reference external" href="https://github.com/DeepLabCut/DeepLabCut/CODE_OF_CONDUCT.md">Code of Conduct</a> to make DeepLabCut
-a welcoming place for all.</p></li>
-<li><p>We are <strong>community-engaged</strong>. We respond to feature requests and proposals on our <a class="reference external" href="https://github.com/DeepLabCut/DeepLabCut/issues">issue tracker</a>.</p></li>
-<li><p>We serve <strong>scientific applications</strong> primarily, over “consumer or commercial” pose estimation tools. This often means prioritizing core functionality support, and rejecting implementations of “flashy” features that have little scientific value.</p></li>
-<li><p>We are <strong>domain agnostic</strong> within the sciences. Functionality that is highly specific to particular scientific domains belongs in plugins, whereas functionality that cuts across many domains and is likely to be widely used belongs inside DeepLabCut.</p></li>
-<li><p>We value <strong>education and documentation</strong>. All functions should have docstrings, preferably with examples, and major functionality should be explained in our <a class="reference external" href="http://deeplabcut.org">tutorials</a>. Core developers can take an active role in finishing documentation examples.</p></li>
-</ul>
+<p>which will pull the latest DeepLabCut version along with all dependencies, and afterwards opens the DeepLabCut GUI.</p>
+<p>The DeepLabCut version in this container is equivalent to the one you install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;deeplabcut[gui]&quot;</span></code>.</p>
 </div>
-<div class="section" id="acknowledgements">
-<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
-<p>We share a lot of our mission and values with <a class="reference external" href="https://napari.org/docs/developers/MISSION_AND_VALUES.html"><code class="docutils literal notranslate"><span class="pre">napari</span></code></a> and <a class="reference external" href="https://scikit-image.org/docs/dev/values.html"><code class="docutils literal notranslate"><span class="pre">scikit-image</span></code></a> and acknowledge the influence of their mission and values statements on this document.</p>
+<div class="section" id="terminal-mode">
+<h3>Terminal mode<a class="headerlink" href="#terminal-mode" title="Permalink to this headline">¶</a></h3>
+<p>If you not need the GUI, you can run the light version of DeepLabCut and open a terminal by running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ deeplabcut-docker bash
+</pre></div>
+</div>
+<p>Inside the terminal, you can confirm that DeepLabCut is correctly installed by running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ipython
+&gt;&gt;&gt; import deeplabcut
+&gt;&gt;&gt; print<span class="o">(</span>deeplabcut.__version__<span class="o">)</span>
+<span class="m">2</span>.2.0.2
+</pre></div>
+</div>
+</div>
+<div class="section" id="jupyter-notebook-mode">
+<h3>Jupyter Notebook mode<a class="headerlink" href="#jupyter-notebook-mode" title="Permalink to this headline">¶</a></h3>
+<p>Finally, you can run DeepLabCut by starting a jupyter notebook server. The corresponding image can be pulled and started by running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ deeplabcut-docker notebook 
+</pre></div>
+</div>
+<p>which will start a Jupyter notebook server. Follow the terminal instructions to open the notebook, by entering <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8888</span></code> in your favorite browser. When prompted for a password, use <code class="docutils literal notranslate"><span class="pre">deeplabcut</span></code>, which is the pre-set option in the container.</p>
+<p>The DeepLabCut version in this container is equivalent to the one you install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">deeplabcut[gui]</span></code>. This means that you can start the DeepLabCut GUI with the appropriate commands in your notebook!</p>
+</div>
+<div class="section" id="advanced-usage">
+<h3>Advanced usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h3>
+<p>Advanced users and developers can visit the <code class="docutils literal notranslate"><span class="pre">/docker</span></code> subdirectory in the DeepLabCut codebase on Github. We provide Dockerfiles for all images, along with build instructions there.</p>
+</div>
+</div>
+<div class="section" id="prerequisites-if-you-don-t-have-docker-installed-already">
+<h2>Prerequisites (if you don’t have Docker installed already)<a class="headerlink" href="#prerequisites-if-you-don-t-have-docker-installed-already" title="Permalink to this headline">¶</a></h2>
+<p><strong>(1)</strong> Install Docker. See <a class="reference external" href="https://docs.docker.com/install/">https://docs.docker.com/install/</a> &amp; for Ubuntu: <a class="reference external" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">https://docs.docker.com/install/linux/docker-ce/ubuntu/</a>
+Test docker:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo docker run hello-world
+</pre></div>
+</div>
+<p>The output should be: <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">from</span> <span class="pre">Docker!</span> <span class="pre">This</span> <span class="pre">message</span> <span class="pre">shows</span> <span class="pre">that</span> <span class="pre">your</span> <span class="pre">installation</span> <span class="pre">appears</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">working</span> <span class="pre">correctly.</span></code></p>
+<p>*if you get the error <code class="docutils literal notranslate"><span class="pre">docker:</span> <span class="pre">Error</span> <span class="pre">response</span> <span class="pre">from</span> <span class="pre">daemon:</span> <span class="pre">Unknown</span> <span class="pre">runtime</span> <span class="pre">specified</span> <span class="pre">nvidia.</span></code> just simply restart docker:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   $ sudo systemctl daemon-reload
+   $ sudo systemctl restart docker
+</pre></div>
+</div>
+<p><strong>(2)</strong> Add your user to the docker group (<a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user">https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user</a>)
+Quick guide  to create the docker group and add your user:
+Create the docker group.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo groupadd docker
+</pre></div>
+</div>
+<p>Add your user to the docker group.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo usermod -aG docker $USER
+</pre></div>
+</div>
+<p>(perhaps restart your computer (best) or (at min) open a new terminal to make sure that you are added from now on)</p>
+</div>
+<div class="section" id="notes-and-troubleshooting">
+<h2>Notes and troubleshooting<a class="headerlink" href="#notes-and-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>Running Docker with GUI support can vary across systems. The current images are confirmed to work with different Linux systems, but especially on MacOS additional configuration steps are necessary.</p>
+<p>When running containers on Linux, in some systems it might be necessary to run <code class="docutils literal notranslate"><span class="pre">host</span> <span class="pre">+local:docker</span></code> before starting the image via <code class="docutils literal notranslate"><span class="pre">deeplabcut-docker</span></code>.</p>
+<p>If you encounter errors while using the images, please open an issue in the DeepLabCut repo—especially the <code class="docutils literal notranslate"><span class="pre">deeplabcut-docker</span></code> is still in its alpha version, and we appreciate user feedback to make the tool robust to use across many operating systems!</p>
 </div>
 </div>
 
@@ -456,17 +532,17 @@ a welcoming place for all.</p></li>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="recipes/OpenVINO.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="installation.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Intel OpenVINO backend</p>
+            <p class="prev-next-title">How To Install DeepLabCut</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="roadmap.html" title="next page">
+    <a class='right-next' id="next-link" href="standardDeepLabCut_UserGuide.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">A development roadmap for DeepLabCut</p>
+        <p class="prev-next-title">DeepLabCut User Guide (for single animal projects)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

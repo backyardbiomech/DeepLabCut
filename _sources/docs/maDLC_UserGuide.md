@@ -1,10 +1,11 @@
+(multi-animal-userguide)=
 # DeepLabCut for Multi-Animal Projects
 
 This document should serve as the user guide for maDLC,
-and it is here to support the scientific advances presented in Lauer et al. 2021.
+and it is here to support the scientific advances presented in [Lauer et al. 2022](https://doi.org/10.1038/s41592-022-01443-0).
 
 
-Note, we strongly encourage you to use the [Project Manager GUI](https://github.com/DeepLabCut/DeepLabCut/blob/master/docs/PROJECT_GUI.md) when you first start using multi-animal mode. Each tab is customized for multi-animal when you create or load a multi-animal project. As long as you follow the recommendations within the GUI, you should be good to go!
+Note, we strongly encourage you to use the [Project Manager GUI](project-manager-gui) when you first start using multi-animal mode. Each tab is customized for multi-animal when you create or load a multi-animal project. As long as you follow the recommendations within the GUI, you should be good to go!
 
 ## How to think about using maDLC:
 
@@ -29,10 +30,10 @@ IF you want to use the bleeding edge version to make edits to the code, see here
 **GUI:** simply open your conda env, and windows/linux type `python -m deeplabcut`. MacOS users: `pythonw -m deeplabcut.`
 Then follow the tabs! It might be useful to read the following, however, so you understand what each command does.
 
-**TERMINAL:** To begin, (windows) navigate to anaconda prompt and right-click to "open as admin ", or (unix/MacOS) simply launch "terminal" on your computer. We assume you have DeepLabCut installed (if not, go [here](https://github.com/DeepLabCut/DeepLabCut/blob/master/docs/installation.md)). Next, launch your conda env (i.e., for example `conda activate DLC-CPU`).
+**TERMINAL:** To begin, (windows) navigate to anaconda prompt and right-click to "open as admin ", or (unix/MacOS) simply launch "terminal" on your computer. We assume you have DeepLabCut installed (if not, [see installation instructions](how-to-install)). Next, launch your conda env (i.e., for example `conda activate DLC-CPU`).
 
 Start iPython, or if you are using MacOS, you must use ``pythonw`` vs. typing ``ipython`` or ``python``, but otherwise it's the same.
-If you use Windows, please always open the terminal with administrator privileges. Please read more [here](https://github.com/DeepLabCut/Docker4DeepLabCut2.0), and in our Nature Protocols paper [here](https://www.nature.com/articles/s41596-019-0176-0). And, see our [troubleshooting wiki](https://github.com/AlexEMG/DeepLabCut/wiki/Troubleshooting-Tips).
+If you use Windows, please always open the terminal with administrator privileges. Please read more [here](https://github.com/DeepLabCut/Docker4DeepLabCut2.0), and in our Nature Protocols paper [here](https://www.nature.com/articles/s41596-019-0176-0). And, see our [troubleshooting wiki](https://github.com/DeepLabCut/DeepLabCut/wiki/Troubleshooting-Tips).
 
 Open an ``ipython`` session and import the package by typing in the terminal:
 ```python
@@ -65,7 +66,7 @@ This set of arguments will create a project directory with the name **Name of th
 
 **labeled-data:** This directory will store the frames used to create the training dataset. Frames from different videos are stored in separate subdirectories. Each frame has a filename related to the temporal index within the corresponding video, which allows the user to trace every frame back to its origin.
 
-**training-datasets:**  This directory will contain the training dataset used to train the network and metadata, which contains information about how the training dataset was created.  
+**training-datasets:**  This directory will contain the training dataset used to train the network and metadata, which contains information about how the training dataset was created.
 
 **videos:** Directory of video links or videos. When **copy\_videos** is set to ``False``, this directory contains symbolic links to the videos. If it is set to ``True`` then the videos will be copied to this directory. The default is ``False``. Additionally, if the user wants to add new videos to the project at any stage, the function **add\_new\_videos** can be used. This will update the list of videos in the project's configuration file. Note: you neither need to use this folder for videos, nor is it required for analyzing videos (they can be anywhere).
 
@@ -75,7 +76,7 @@ deeplabcut.add_new_videos('Full path of the project configuration file*', ['full
 
 *Please note, *Full path of the project configuration file* will be referenced as ``config_path`` throughout this protocol.
 
-You can also use annotated data from singe-animal projects, by converting those files. There are docs for this: [convert single to multianimal annotation data](https://github.com/DeepLabCut/DeepLabCut/blob/master/docs/convert_maDLC.md)
+You can also use annotated data from singe-animal projects, by converting those files. There are docs for this: [convert single to multianimal annotation data](convert-maDLC)
 
 ### Configure the Project:
 
@@ -211,7 +212,7 @@ is one of the most critical parts for creating the training dataset. The DeepLab
 ‘check_labels’ to do so. It is used as follows:
 ```python
 deeplabcut.check_labels(config_path, visualizeindividuals=True/False)
- ```   
+ ```
 **maDeepLabCut:** you can check and plot colors per individual or per body part, just set the flag `visualizeindividuals=True/False`. Note, you can run this twice in both states to see both images.
 
 <p align="center">
@@ -244,11 +245,11 @@ Specifically, the user can edit the **pose_cfg.yaml** within the **train** subdi
 configuration files contain meta information with regard to the parameters of the feature detectors. Key parameters
 are listed in Box 2.
 
-- At this step, the ImageNet pre-trained networks (i.e. ResNet-50) weights will be downloaded. If they do not download (you will see this downloading in the terminal, then you may not have permission to do so (something we have seen with some Windows users - see the **[WIKI troubleshooting for more help!](https://github.com/AlexEMG/DeepLabCut/wiki/Troubleshooting-Tips)**).
+- At this step, the ImageNet pre-trained networks (i.e. ResNet-50) weights will be downloaded. If they do not download (you will see this downloading in the terminal, then you may not have permission to do so (something we have seen with some Windows users - see the **[WIKI troubleshooting for more help!](https://github.com/DeepLabCut/DeepLabCut/wiki/Troubleshooting-Tips)**).
 
 **OPTIONAL POINTS:**
 
-With the data-driven skeleton selection introduced in 2.2rc1, DLC networks are trained by default
+With the data-driven skeleton selection introduced in 2.2rc1+, DLC networks are trained by default
 on complete skeletons (i.e., they learn all possible redundant connections), before being optimally pruned
 at model evaluation. Although this procedure is by far superior to manually defining a graph,
 we leave manually-defining a skeleton as an option for the advanced user:
@@ -257,9 +258,16 @@ we leave manually-defining a skeleton as an option for the advanced user:
 my_better_graph = [[0, 1], [1, 2], [2, 3]]  # These are indices in the list of multianimalbodyparts
 deeplabcut.create_multianimaltraining_dataset(path_config_file, paf_graph=my_better_graph)
 ```
-Importantly, a user-defined graph is still required to cover all multianimalbodyparts at least once.
 
-**DATA AUGMENTATION:** At this stage you can also decide what type of augmentation to use. The default loaders work well for most all tasks (as shown on www.deeplabcut.org), but there are many options, more data augmentation, intermediate supervision, etc. Please look at the [**pose_cfg.yaml**](https://github.com/AlexEMG/DeepLabCut/blob/master/deeplabcut/pose_cfg.yaml) file for a full list of parameters **you might want to change before running this step.** There are several data loaders that can be used. For example, you can use the default loader (introduced and described in the Nature Protocols paper), [TensorPack](https://github.com/tensorpack/tensorpack) for data augmentation (currently this is easiest on Linux only), or [imgaug](https://imgaug.readthedocs.io/en/latest/). We recommend `imgaug` (which is default now!). You can set this by passing:``` deeplabcut.create_training_dataset(config_path, augmenter_type='imgaug')  ```
+Alternatively, the `skeleton` defined in the `config.yaml` file can also be used:
+
+```python
+deeplabcut.create_multianimaltraining_dataset(path_config_file, paf_graph='config')
+```
+
+Importantly, if a user-defined graph is used it still is required to cover all multianimalbodyparts at least once.
+
+**DATA AUGMENTATION:** At this stage you can also decide what type of augmentation to use. The default loaders work well for most all tasks (as shown on www.deeplabcut.org), but there are many options, more data augmentation, intermediate supervision, etc. Please look at the [**pose_cfg.yaml**](https://github.com/DeepLabCut/DeepLabCut/blob/master/deeplabcut/pose_cfg.yaml) file for a full list of parameters **you might want to change before running this step.** There are several data loaders that can be used. For example, you can use the default loader (introduced and described in the Nature Protocols paper), [TensorPack](https://github.com/tensorpack/tensorpack) for data augmentation (currently this is easiest on Linux only), or [imgaug](https://imgaug.readthedocs.io/en/latest/). We recommend `imgaug` (which is default now!). You can set this by passing:``` deeplabcut.create_training_dataset(config_path, augmenter_type='imgaug')  ```
 
 The differences of the loaders are as follows:
 - `default`: our standard DLC 2.0 introduced in Nature Protocols variant (scaling, auto-crop augmentation) *will be renamed to `crop_scale` in a future release!*
@@ -270,7 +278,7 @@ The differences of the loaders are as follows:
 Our recent [A Primer on Motion Capture with Deep Learning: Principles, Pitfalls, and Perspectives](https://www.cell.com/neuron/pdf/S0896-6273(20)30717-0.pdf), details the advantage of augmentation for a worked example (see Fig 7). TL;DR: use imgaug and use the symmetries of your data!
 
 
-Alternatively, you can set the loader (as well as other training parameters) in the **pose_cfg.yaml** file of the model that you want to train. Note, to get details on the options, look at the default file: [**pose_cfg.yaml**](https://github.com/AlexEMG/DeepLabCut/blob/master/deeplabcut/pose_cfg.yaml).
+Alternatively, you can set the loader (as well as other training parameters) in the **pose_cfg.yaml** file of the model that you want to train. Note, to get details on the options, look at the default file: [**pose_cfg.yaml**](https://github.com/DeepLabCut/DeepLabCut/blob/master/deeplabcut/pose_cfg.yaml).
 
 Importantly, image cropping as previously done with `deeplabcut.cropimagesandlabels` in multi-animal projects
 is now part of the augmentation pipeline. In other words, image crops are no longer stored in labeled-data/..._cropped
@@ -322,8 +330,8 @@ trainingsetindex: int, optional
 gputouse: int, optional. Natural number indicating the number of your GPU (see number in nvidia-smi). If you do not have a GPU, put None.
 See: https://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries
 
-max_snapshots_to_keep: int, or None. Sets how many snapshots are kept, i.e. states of the trained network. For every saving interation a snapshot is stored, however, only the last max_snapshots_to_keep many are kept! If you change this to None, then all are kept.
-See: https://github.com/AlexEMG/DeepLabCut/issues/8#issuecomment-387404835
+max_snapshots_to_keep: int, or None. Sets how many snapshots are kept, i.e. states of the trained network. For every saving iteration a snapshot is stored, however, only the last max_snapshots_to_keep many are kept! If you change this to None, then all are kept.
+See: https://github.com/DeepLabCut/DeepLabCut/issues/8#issuecomment-387404835
 
 autotune: property of TensorFlow, somehow faster if 'false' (as Eldar found out, see https://github.com/tensorflow/tensorflow/issues/13317). Default: False
 
@@ -334,7 +342,7 @@ saveiters: this variable is actually set in pose_config.yaml. However, you can o
 the pose_config.yaml file for the corresponding project. If None, the value from there is used, otherwise it is overwritten! Default: None
 
 maxiters: This sets how many iterations to train. This variable is set in pose_config.yaml. However, you can overwrite it with this. If None, the value from there is used, otherwise it is overwritten! Default: None
-```    
+```
 
 ### Evaluate the Trained Network:
 
@@ -352,8 +360,9 @@ strengths of DeepLabCut is that due to the probabilistic output of the scoremap,
 reliably report if a body part is visible in a given frame. (see discussions of finger tips in reaching and the Drosophila
 legs during 3D behavior in [Mathis et al, 2018]). The evaluation results are computed by typing:
 
-Setting ``plotting`` to true plots all the testing and training frames with the manual and predicted labels. The user
-should visually check the labeled test (and training) images that are created in the ‘evaluation-results’ directory.
+Setting ``plotting`` to True plots all the testing and training frames with the manual and predicted labels; these will
+be colored by body part type by default. They can alternatively be colored by individual by passing `plotting`=`individual`.
+The user should visually check the labeled test (and training) images that are created in the ‘evaluation-results’ directory.
 Ideally, DeepLabCut labeled unseen (test images) according to the user’s required accuracy, and the average train
 and test errors are comparable (good generalization). What (numerically) comprises an acceptable MAE depends on
 many factors (including the size of the tracked body parts, the labeling variability, etc.). Note that the test error can
@@ -405,10 +414,10 @@ deeplabcut.extract_save_all_maps(config_path, shuffle=shuffle, Indices=[0, 5])
 ```
 you can drop "Indices" to run this on all training/testing images (this is very slow!)
 
-### -------------------- DECISION / BREAK POINT -------------------
+### -------------------- DECISION POINT -------------------
 
 #### ATTENTION!
-**Pose estimation and tracking should be thought of as separate steps.** If you do not have good pose estimation evaluation metrics at this point, stop, check original labels, add more data, etc --> don't move forward with this model. If you think you have a good model, plese test the "raw" pose estimation performance on a video to validate performance:
+**Pose estimation and tracking should be thought of as separate steps.** If you do not have good pose estimation evaluation metrics at this point, stop, check original labels, add more data, etc --> don't move forward with this model. If you think you have a good model, please test the "raw" pose estimation performance on a video to validate performance:
 
 Please run:
 
@@ -416,13 +425,22 @@ Please run:
 scorername = deeplabcut.analyze_videos(config_path,['/fullpath/project/videos/testVideo.mp4'], videotype='.mp4')
 deeplabcut.create_video_with_all_detections(config_path, ['/fullpath/project/videos/testVideo.mp4'], videotype='.mp4')
 ```
-Please note that you do **not** get the .h5/csv file you might be used to getting (this comes after tracking). You will get a `pickle` file that is used in `create_video_with_all_detections`. IF you have good clean out video, ending in `....full.mp4` (and the evaluation metrics look good, scoremaps look good, plotted evaluation images), then go forward!!!
+Please note that you do **not** get the .h5/csv file you might be used to getting (this comes after tracking). You will get a `pickle` file that is used in `create_video_with_all_detections`.
+Another sanity check may be to examine the distributions of edge affinity costs using `deeplabcut.utils.plot_edge_affinity_distributions`. Easily separable distributions indicate that the model has learned strong links to group keypoints into distinct individuals — likely a necessary feature for the assembly stage (note that the amount of overlap will also depend on the amount of interactions between your animals in the daset).
+IF you have good clean out video, ending in `....full.mp4` (and the evaluation metrics look good, scoremaps look good, plotted evaluation images, and affinity distributions are far apart for most edges), then go forward!!!
 
 If this does not look good, we recommend extracting and labeling more frames (even from more videos). Try to label close interactions of animals for best performance. Once you label more, you can create a new training set and train.
 
 You can either:
-1. extract more frames from existing or new videos and label as when initially building the training data set, or
-2. extract outlier frames based on the videos you just analyzed. To do this, you first need to analyze a video and convert to tracklets (Step 1 and 2 in the Analyze Video tab of the GUI), then you load the tracklet file into the refine tracklet GUI, and "Save" without making any modifications (or run `deeplabcut.convert_raw_tracks_to_h5(config_path, picklefile)`). That will create the files needed in the Extract Outlier Frames tab of the GUI.
+1. extract more frames manually from existing or new videos and label as when initially building the training data set, or
+2. let DeepLabCut find frames where keypoints were poorly detected and automatically extract those for you. All you need is
+to run:
+```python
+deeplabcut.find_outliers_in_raw_data(config_path, pickle_file, video_file)
+```
+where pickle_file is the `_full.pickle` one obtains after video analysis.
+Flagged frames will be added to your collection of images in the corresponding labeled-data folders for you to label.
+
 
 ### ------------------- ANIMAL ASSEMBLY & TRACKING ACROSS FRAMES -------------------
 
@@ -432,17 +450,15 @@ After pose estimation, now you perform assembly and tracking. *NEW* in 2.2 is a 
 - Please note that **novel videos DO NOT need to be added to the config.yaml file**. You can simply have a folder elsewhere on your computer and pass the video folder (then it will analyze all videos of the specified type (i.e. ``videotype='.mp4'``), or pass the path to the **folder** or exact video(s) you wish to analyze:
 
 ```python
-deeplabcut.analyze_videos(config_path, ['/fullpath/project/videos/'], videotype='.mp4')
+deeplabcut.analyze_videos(config_path, ['/fullpath/project/videos/'], videotype='.mp4', auto_track=True)
 ```
-Note: You do **not** get the .h5/csv file you might be used to getting in standard DLC (this comes next!).
+## IF auto_track = True:
 
-Now that you have detections (which are saved as a pickle file, not h5, btw), we need to assemble and track the animals. This step has several tracker types (`track_method`), and we recommend testing which one works best on your data (but typically we find ellipse is best).
+- *NEW* in 2.2.0.3+: `deeplabcut.analyze_videos` has a new argument `auto_track=True`, chaining pose estimation, tracking, and stitching in a single function call with defaults we found to work well. Thus, you'll now get the `.h5` file you might be used to getting in standard DLC. If `auto_track=False`, one must run `convert_detections2tracklets` and `stitch_tracklets` manually (see below), granting more control over the last steps of the workflow (ideal for advanced users).
 
-```python
-deeplabcut.convert_detections2tracklets(config_path, ['videofile_path'], videotype='mp4',
-                                        shuffle=1, trainingsetindex=0, track_method='box/ellipse/skeleton')
-```
-You can validate the tracking parameters. Namely, you can iteratively change the parameters, run `convert_detections2tracklets` then load them in the GUI (`refine_tracklets`) if you want to look at the performance. If you want to edit these, you will need to open the `inference_cfg.yaml` file (or click button in GUI). The options are:
+## IF auto_track = False:
+
+   -  You can validate the tracking parameters. Namely, you can iteratively change the parameters, run `convert_detections2tracklets` then load them in the GUI (`refine_tracklets`) if you want to look at the performance. If you want to edit these, you will need to open the `inference_cfg.yaml` file (or click button in GUI). The options are:
 
 ```python
 # Tracking:
@@ -456,27 +472,33 @@ max_age: 100
 min_hits: 3
 ```
 
-**IMPORTANT POINT**
+  - **IMPORTANT POINT FOR SUPERVISED IDENTITY TRACKING**
 
-If the network has been trained to learn the animals' identities (i.e., you set `identity=True` in config.yaml before training)
-this information can be leveraged both during: (i) animal assembly, where body parts
-are grouped based on the animal they are predicted to belong to (affinity between pairs of keypoints
-is no longer considered in that case); and (ii) animal tracking, where identity only can be
-utilized in place of motion trackers to form tracklets.
+    If the network has been trained to learn the animals' identities (i.e., you set `identity=True` in config.yaml before training) this information can be leveraged both during: (i) animal assembly, where body parts are grouped based on the animal they are predicted to belong to (affinity between pairs of keypoints is no longer considered in that case); and (ii) animal tracking, where identity only can be utilized in place of motion trackers to form tracklets.
 
 To use this ID information, simply pass:
 ```python
 deeplabcut.convert_detections2tracklets(..., identity_only=True)
 ```
 
+- **Note:** If only one individual is to be assembled and tracked, assembly and tracking are skipped, and detections are treated as in single-animal projects; i.e., it is the keypoints with highest confidence that are kept and accumulated over frames to form a single, long tracklet. No action is required from users, this is done automatically.
+
 
 **Animal assembly and tracking quality** can be assessed via `deeplabcut.utils.make_labeled_video.create_video_from_pickled_tracks`. This function provides an additional diagnostic tool before moving on to refining tracklets.
+
+
+If animal assemblies do not look pretty, an alternative to the outlier search described above is to pass the
+`_assemblies.pickle` to `find_outliers_in_raw_data` in place of the `_full.pickle`.
+This will focus the outlier search on unusual assemblies (i.e., animal skeletons that were oddly reconstructed). This may be a bit more sensitive with crowded scenes or frames where animals interact closely.
+Note though that at that stage it is likely preferable anyway to carry on with the remaining steps, and extract outliers
+from the final h5 file as was customary in single animal projects.
+
 
 **Next, tracklets are stitched to form complete tracks with:
 
 ```python
 deeplabcut.stitch_tracklets(config_path, ['videofile_path'], videotype='mp4',
-                            shuffle=1, trainingsetindex=0, track_method='box/ellipse/skeleton')
+                            shuffle=1, trainingsetindex=0)
 ```
 
 Note that the base signature of the function is identical to `analyze_videos` and `convert_detections2tracklets`.
@@ -489,10 +511,18 @@ deeplabcut.stitch_tracklets(..., n_tracks=n)
 ```
 In such cases, file columns will default to dummy animal names (ind1, ind2, ..., up to indn).
 
+## Using Unsupervised Identity Tracking:
+
+In Lauer et al. 2022 we introduced a new method to do unsupervised reID of animals. Here, you can use the tracklets to learn the identity of animals to enhance your tracking performance. To use the code:
+
+```python
+deeplabcut.transformer_reID(config, videos_to_analyze, n_tracks=None, videotype="mp4")
+```
+Note you should pass the n_tracks (number of animals) you expect to see in the video.
 
 ### Refine Tracklets:
 
-You can also optionally **refine the tracklets**. You can fix both "major" ID swaps, i.e. perhaps when animals cross, and you can micro-refine the individual body points. You will load the `...trackertype.pickle` file that was created above, and then you can launch a GUI to interactively refine the data. This also has several options, so please check out the docstring. Upon saving the refined tracks you get an `.h5` file (akin to what you might be used to from standard DLC. You can also load (1) filter this to take care of small jitters, and (2) load this `.h5` this to refine (again) in case you find another issue, etc!
+You can also optionally **refine the tracklets**. You can fix both "major" ID swaps, i.e. perhaps when animals cross, and you can micro-refine the individual body points. You will load the `...trackertype.pickle` or `.h5'` file that was created above, and then you can launch a GUI to interactively refine the data. This also has several options, so please check out the docstring. Upon saving the refined tracks you get an `.h5` file (akin to what you might be used to from standard DLC. You can also load (1) filter this to take care of small jitters, and (2) load this `.h5` this to refine (again) in case you find another issue, etc!
 
 ```python
 deeplabcut.refine_tracklets(path_config_file, pickle_or_h5_file, videofile_path, max_gap=0, min_swap_len=2, min_tracklet_len=2, trail_len=50)
@@ -508,37 +538,38 @@ If you fill in gaps, they will be associated to an ultra low probability, 0.01, 
 
 [Read more here!](functionDetails.md#madeeplabcut-critical-point---assemble--refine-tracklets)
 
-Short demo:  
+Short demo:
  <p align="center">
 <img src="https://images.squarespace-cdn.com/content/v1/57f6d51c9f74566f55ecf271/1588690928000-90ZMRIM8SN6QE20ZOMNX/ke17ZwdGBToddI8pDm48kJ1oJoOIxBAgRD2ClXVCmKFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxBw7VlGKDQO2xTcc51Yv6DahHgScLwHgvMZoEtbzk_9vMJY_JknNFgVzVQ2g0FD_s/refineDEMO.gif?format=750w" width="70%">
 </p>
 
 ### Once you have analyzed video data (and refined your maDeepLabCut tracklets):
 
-Firstly, Here are some tips for scaling up your video analysis, including looping over many folders for batch processing: https://github.com/AlexEMG/DeepLabCut/wiki/Batch-Processing-your-Analysis
+Firstly, Here are some tips for scaling up your video analysis, including looping over many folders for batch processing: https://github.com/DeepLabCut/DeepLabCut/wiki/Batch-Processing-your-Analysis
 
 You can also filter the predicted bodyparts by:
 ```python
-deeplabcut.filterpredictions(config_path,['/fullpath/project/videos/reachingvideo1.avi'], track_method='box/ellipse/skeleton')
+deeplabcut.filterpredictions(config_path,['/fullpath/project/videos/reachingvideo1.avi'])
 ```
 Note, this creates a file with the ending filtered.h5 that you can use for further analysis. This filtering step has many parameters, so please see the full docstring by typing: ``deeplabcut.filterpredictions?``
 
 ### Plotting Results:
 
-- **NOTE :bulb::mega::** Before you create a video, you should set what threshold to use for plotting. This is set in the `config.yaml` file as `pcutoff` - if you have a well trained network, this should be high, i.e. set it to `0.8` or higher! IF YOU FILLED IN GAPS, you need to set this to 0 to "see" the filled in parts.
+- **NOTE :bulb::mega::** Before you create a video, you should set what threshold to use for plotting. This is set in the `config.yaml` file as `pcutoff` - if you have a well trained network, this should be high, i.e. set it to `0.8` or higher! IF YOU FILLED IN GAPS, you need to set this to `0` to "see" the filled in parts.
 
 
 - You can also determine a good `pcutoff` value by looking at the likelihood plot created during `plot_trajectories`:
 
 Plot the outputs:
 ```python
-deeplabcut.plot_trajectories(config_path,['/fullpath/project/videos/reachingvideo1.avi'],filtered = True, track_method='box/ellipse/skeleton')
+  deeplabcut.plot_trajectories(config_path,['/fullpath/project/videos/reachingvideo1.avi'],filtered = True)
 ```
 
 Create videos:
+```python
+  deeplabcut.create_labeled_video(config_path, [videos], videotype='avi', shuffle=1, trainingsetindex=0, filtered=False, fastmode=True, save_frames=False, keypoints_only=False, Frames2plot=None, displayedbodyparts='all', displayedindividuals='all', codec='mp4v', outputframerate=None, destfolder=None, draw_skeleton=False, trailpoints=0, displaycropped=False, color_by='bodypart', track_method='')
 ```
-deeplabcut.create_labeled_video(config_path, [`/analysis/project/videos/reachingvideo1.avi','/fullpath/project/videos/reachingvideo2.avi'],filtered = True, track_method='box/ellipse/skeleton')
-```
+- **NOTE :bulb::mega::** You have a lot of options in terms of video plotting (quality, display type, etc). We recommend checking the docstring!
 
 (more details [here](functionDetails.md#i-video-analysis-and-plotting-results))
 
@@ -595,4 +626,4 @@ Now, you can run any of the functions described in this documentation.
 
 - if you are looking for resources to increase your understanding of the software and general guidelines, we have an open source, free course: http://DLCcourse.deeplabcut.org.
 
-**Please note:** what we cannot do is provided support or help designing your experiments and data analysis. The number of requests for this is too great to sustain in our inbox. We are happy to answer such questions in the forum as a community, in a scalable way. We hope and believe we have given enough tools and resources to get started and to accelerate your research program, and this is backed by the >700 citations using DLC, 2 clinical trials by others, and countless applications. Thus, we believe this code works, is accessible, and with limited programming knowledge can be used. Please read our [Missions & Values statement](https://github.com/DeepLabCut/DeepLabCut/blob/master/docs/MISSION_AND_VALUES.md) to learn more about what we DO hope to provide you.
+**Please note:** what we cannot do is provided support or help designing your experiments and data analysis. The number of requests for this is too great to sustain in our inbox. We are happy to answer such questions in the forum as a community, in a scalable way. We hope and believe we have given enough tools and resources to get started and to accelerate your research program, and this is backed by the >700 citations using DLC, 2 clinical trials by others, and countless applications. Thus, we believe this code works, is accessible, and with limited programming knowledge can be used. Please read our [Missions & Values statement](mission-and-values) to learn more about what we DO hope to provide you.
