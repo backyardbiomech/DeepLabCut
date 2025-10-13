@@ -1,7 +1,19 @@
 (docker-containers)=
 # DeepLabCut Docker containers
 
-For DeepLabCut 2.2.0.2 and onwards, we provide container containers on [DockerHub](https://hub.docker.com/r/deeplabcut/deeplabcut). Using Docker is an alternative approach to using DeepLabCut, which only requires the user to install [Docker](https://www.docker.com/) on your machine, vs. following the step-by-step installation guide for a Anaconda setup. All dependencies needed to run DeepLabCut in terminal or GUI mode, or running Jupyter notebooks with DeepLabCut pre-installed are shipped with the provided Docker images.
+For DeepLabCut 2.2.0.2 and onwards, we provide container containers on [DockerHub](
+https://hub.docker.com/r/deeplabcut/deeplabcut). Using Docker is an alternative approach
+to using DeepLabCut, which only requires the user to install [Docker](
+https://www.docker.com/) on your machine, vs. following the step-by-step installation
+guide for a Anaconda setup. All dependencies needed to run DeepLabCut in the terminal or
+running Jupyter notebooks with DeepLabCut pre-installed are shipped with the provided
+Docker images.
+
+The [`napari-deeplabcut` labelling GUI](
+https://deeplabcut.github.io/DeepLabCut/docs/gui/napari_GUI.html) can be used to label 
+your data, but it cannot be run in a Docker container: it should be installed as 
+documented in the link above: `pip install napari-deeplabcut` (checkout the [workflow](
+https://deeplabcut.github.io/DeepLabCut/docs/gui/napari_GUI.html#workflow) as well!).
 
 Advanced users can directly head to [DockerHub](https://hub.docker.com/r/deeplabcut/deeplabcut) and use the provided images there. To get started with using the images, we however also provide a helper tool, `deeplabcut-docker`, which makes the transition to docker images particularly convenient; to install the tool, run
 
@@ -14,10 +26,10 @@ Note that this will *not* disprupt or install Tensorflow, or any other DeepLabCu
 
 ## Usage modes
 
-With `deeplabcut-docker`, you can use the images in three modes.
+With `deeplabcut-docker`, you can use the images in two modes.
 
 - *Note 1: When running any of the following commands first, it can take some time to complete (a few minutes, depending on your internet connection), since it downloads the Docker image in the background. If you do not see any errors in your terminal, assume that everything is working fine! Subsequent runs of the command will be faster.*
-- *Note 2: The Terminal mode image can be used on all supported platforms (Linux and MacOS). The GUI images can only be considered stable on Linux systems as of DeepLabCut 2.2.0.2 and need additional configuration on Mac.*
+- *Note 2: The labelling GUI cannot be used through the Docker images. However, you can install [`napari-deeplabcut`](https://github.com/DeepLabCut/napari-deeplabcut/tree/main?tab=readme-ov-file#napari-deeplabcut-keypoint-annotation-for-pose-estimation) in a conda environment to do the labelling!*
 - *Note 3: For any mode below, you might want to set which directory is the base, namely, so you can have read/write (or read-only access). Here is how to do so:
 If you want to mount the whole directory could e.g., pass*
 
@@ -28,38 +40,31 @@ If you want to mount the whole directory could e.g., pass*
 If read-only access is enough, `deeplabcut-docker bash -v /home/mackenzie/DEEPLABCUT:/home/mackenzie/DEEPLABCUT:ro`
 
 
-### GUI mode
-
-To run DeepLabCut in GUI mode and start the DeepLabCut GUI, simply run
-
-``` bash
-$ deeplabcut-docker gui
-```
-
-which will pull the latest DeepLabCut version along with all dependencies, and afterwards opens the DeepLabCut GUI.
-
-The DeepLabCut version in this container is equivalent to the one you install with `pip install "deeplabcut[gui]"`.
-
 ### Terminal mode 
 
-If you not need the GUI, you can run the light version of DeepLabCut and open a terminal by running
+You can run the light version of DeepLabCut and open a terminal by running
 
 ``` bash
 $ deeplabcut-docker bash
 ```
 
-Inside the terminal, you can confirm that DeepLabCut is correctly installed by running
+**Important:** if have GPUs on your machine and want to use them to train models, you 
+need to pass the `--gpus all` argument to `deeplabcut-docker`:
+
+``` bash
+$ deeplabcut-docker bash --gpus all
+```
+
+Inside the terminal, you can confirm that DeepLabCut is correctly installed by running and noting which version installs.
 
 ``` bash
 $ ipython
 >>> import deeplabcut
->>> print(deeplabcut.__version__)
-2.2.0.2
 ```
 
 ### Jupyter Notebook mode
 
-Finally, you can run DeepLabCut by starting a jupyter notebook server. The corresponding image can be pulled and started by running
+You can run DeepLabCut by starting a jupyter notebook server. The corresponding image can be pulled and started by running
 
 ``` bash
 $ deeplabcut-docker notebook 
@@ -71,7 +76,7 @@ The DeepLabCut version in this container is equivalent to the one you install wi
 
 ### Advanced usage
 
-Advanced users and developers can visit the `/docker` subdirectory in the DeepLabCut codebase on Github. We provide Dockerfiles for all images, along with build instructions there.
+Advanced users and developers can visit the [`/docker` subdirectory](https://github.com/DeepLabCut/DeepLabCut/tree/main/docker) in the DeepLabCut codebase on Github. We provide Dockerfiles for all images, along with build instructions there.
 
 ## Prerequisites (if you don't have Docker installed already)
 
@@ -102,7 +107,7 @@ Add your user to the docker group.
 
 ## Notes and troubleshooting
 
-Running Docker with GUI support can vary across systems. The current images are confirmed to work with different Linux systems, but especially on MacOS additional configuration steps are necessary.
+We dropped GUI support in 2.3.5+ due to too many numerous issues supporting them. Also please note these are tested on unix systems.
 
 When running containers on Linux, in some systems it might be necessary to run `host +local:docker` before starting the image via `deeplabcut-docker`.
 
