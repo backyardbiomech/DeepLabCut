@@ -1,4 +1,9 @@
-
+---
+deeplabcut:
+  last_content_updated: '2026-02-10'
+  last_metadata_updated: '2026-03-06'
+  ignore: false
+---
 # Clustering in the napari-DeepLabCut GUI
 
 To increase model performance, one can find the errors in the user-defined label (or in output H5 files after video
@@ -36,7 +41,7 @@ Your contributions and suggestions are welcomed, so test the
 [PR](https://github.com/DeepLabCut/napari-deeplabcut/pull/38) and give us feedback!
 
 This #cookbook recipe aims to show a usecase of **clustering in napari** and is contributed by 2022 DLC AI Resident
-[Sabrina Benas](https://twitter.com/Sabrineiitor) 💜.
+[Sabrina Benas](https://x.com/Sabrineiitor) 💜.
 
 
 ## Detect Outliers to Refine Labels

@@ -1,5 +1,11 @@
+---
+deeplabcut:
+  last_content_updated: '2026-02-10'
+  last_metadata_updated: '2026-03-06'
+  ignore: false
+---
 (overview)=
-# 🥳 Get started with DeepLabCut: our key recommendations 
+# 🥳 Get started with DeepLabCut: our key recommendations
 
 Below we will first outline what you need to get started, the different ways you can use DeepLabCut, and then the full workflow. Note, we highly recommend you also read and follow our [Nature Protocols paper](https://www.nature.com/articles/s41596-019-0176-0), which is (still) fully relevant to standard DeepLabCut.
 
@@ -32,14 +38,14 @@ We are primarily a package that enables deep learning-based pose estimation. We 
 <p align="center">
 <img src= https://github.com/amathislab/BUCTD/raw/main/media/BUCTD_fig1.png?format=1000w width="50%">
  </p>
- 
+
  **Additional Learning Resources:**
 
  - [TUTORIALS:](https://www.youtube.com/channel/UC2HEbWpC_1v6i9RnDMy-dfA?view_as=subscriber) video tutorials that demonstrate various aspects of using the code base.
  - [HOW-TO-GUIDES:](overview) step-by-step user guidelines for using DeepLabCut on your own datasets (see below)
  - [EXPLANATIONS:](https://github.com/DeepLabCut/DeepLabCut-Workshop-Materials) resources on understanding how DeepLabCut works
  - [REFERENCES:](https://github.com/DeepLabCut/DeepLabCut#references) read the science behind DeepLabCut
- - [BEGINNER GUIDE TO THE GUI](https://deeplabcut.github.io/DeepLabCut/docs/beginners-guide.html)
+ - [BEGINNER GUIDE TO THE GUI](https://deeplabcut.github.io/DeepLabCut/docs/beginner-guides/beginners-guide.html)
 
 Getting Started: [a video tutorial on navigating the documentation!](https://www.youtube.com/watch?v=A9qZidI7tL8)
 

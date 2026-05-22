@@ -30,11 +30,12 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d0fcb2aa" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -50,7 +51,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -61,7 +62,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Using ModelZoo models on your own datasets" href="recipes/UsingModelZooPupil.html" />
-    <link rel="prev" title="DeepLabCut-Live!" href="deeplabcutlive.html" />
+    <link rel="prev" title="Video timestamp format" href="dlc-live/dlc-live-gui/user_guide/misc/timestamp_format.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -203,7 +204,11 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphical User Interfaces (GUIs)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="gui/PROJECT_GUI.html">Interactive Project Manager GUI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gui/napari_GUI.html">napari labeling GUI</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="gui/napari_GUI.html">napari GUI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="gui/napari/basic_usage.html">napari-DLC - Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui/napari/advanced_usage.html">napari-DLC - Advanced features</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DLC3 PyTorch Specific Docs</span></p>
 <ul class="nav bd-sidenav">
@@ -272,7 +277,24 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut-Live!</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="deeplabcutlive.html">DeepLabCut-Live!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlc-live/deeplabcutlive.html">Running DeepLabCut models in real-time</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="dlc-live/dlc-live-gui/index.html">DeepLabCut-live-GUI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="dlc-live/dlc-live-gui/quickstart/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/overview.html">GUI overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/cameras_backends/camera_support.html">Camera support</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/cameras_backends/opencv_backend.html">OpenCV backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/cameras_backends/basler_backend.html">Basler backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/cameras_backends/aravis_backend.html">Aravis backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/cameras_backends/gentl_backend.html">GenTL backend</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/misc/misc_landing.html">Additional resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/misc/modelzoo_downloads.html">Pre-trained models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlc-live/dlc-live-gui/user_guide/misc/timestamp_format.html">Video timestamp format</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">🦄 DeepLabCut Model Zoo</span></p>
 <ul class="current nav bd-sidenav">
@@ -289,7 +311,7 @@
 <li class="toctree-l1"><a class="reference internal" href="MISSION_AND_VALUES.html">Mission and Values of DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">A development roadmap for DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Governance.html">Governance Model of DeepLabCut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">How to Contribute to DeepLabCut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to DeepLabCut</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Citations for DeepLabCut</span></p>
 <ul class="nav bd-sidenav">
@@ -497,6 +519,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superanimal-topviewmouse">SuperAnimal-TopViewMouse:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superanimal-human">SuperAnimal-Human:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-using-superanimal-models-for-inference-without-training">Practical example: Using SuperAnimal models for inference without training.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-fmpose3d-monocular-3d-inference">Practical example: FMPose3D monocular 3D inference</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-using-superanimal-model-bottom-up-considering-video-animal-size">Practical example: Using SuperAnimal model bottom up, considering video/animal size.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-using-transfer-learning-with-superanimal-weights">Practical example: Using transfer learning with superanimal weights.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-failure-modes-for-superanimal-models-and-how-to-fix-it">Potential failure modes for SuperAnimal Models and how to fix it.</a></li>
@@ -516,7 +539,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-deeplabcut-model-zoo">
-<h1>The DeepLabCut Model Zoo!<a class="headerlink" href="#the-deeplabcut-model-zoo" title="Link to this heading">#</a></h1>
+<span id="file-model-zoo"></span><h1>The DeepLabCut Model Zoo!<a class="headerlink" href="#the-deeplabcut-model-zoo" title="Link to this heading">#</a></h1>
 <p><img alt="image" src="https://images.squarespace-cdn.com/content/v1/57f6d51c9f74566f55ecf271/8957c690-4f27-4430-8581-4161fd58d052/68747470733a2f2f696d616765732e73717561726573706163652d63646e2e636f6d2f636f6e74656e742f76312f3537663664353163396637343536366635356563663237312f313631363439323337333730302d50474f41433732494f4236415545343756544a582f6b6531375a77644742546f646449.png?format=450w" /></p>
 <section id="home-page">
 <h2>🏠 <a class="reference external" href="http://modelzoo.deeplabcut.org/">Home page</a><a class="headerlink" href="#home-page" title="Link to this heading">#</a></h2>
@@ -625,6 +648,31 @@ test our models in 🕸<a class="reference external" href="https://contrib.deepl
                                         <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;hrnet_w32&quot;</span><span class="p">,</span>
                                         <span class="n">detector_name</span><span class="o">=</span><span class="s2">&quot;fasterrcnn_resnet50_fpn_v2&quot;</span><span class="p">,</span>
                                         <span class="n">video_adapt</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-example-fmpose3d-monocular-3d-inference">
+<h3>Practical example: FMPose3D monocular 3D inference<a class="headerlink" href="#practical-example-fmpose3d-monocular-3d-inference" title="Link to this heading">#</a></h3>
+<p>For FMPose3D models, use <code class="docutils literal notranslate"><span class="pre">model_name=&quot;fmpose3d_animals&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">model_name=&quot;fmpose3d_humans&quot;</span></code>. Model selection is still determined by
+<code class="docutils literal notranslate"><span class="pre">model_name</span></code>, but to stay aligned with SuperAnimal naming conventions use:
+<code class="docutils literal notranslate"><span class="pre">superanimal_name=&quot;superanimal_quadruped&quot;</span></code> for <code class="docutils literal notranslate"><span class="pre">fmpose3d_animals</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">superanimal_name=&quot;superanimal_humanbody&quot;</span></code> for <code class="docutils literal notranslate"><span class="pre">fmpose3d_humans</span></code>.</p>
+<p>Like the 2D superanimal models, this inference branch writes
+intermediate 2D predictions to <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;_DLC_fmpose3d_*.h5</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;_DLC_fmpose3d_*.json</span></code>. In addition, 3D predictions are saved to
+<code class="docutils literal notranslate"><span class="pre">&lt;video&gt;_DLC_fmpose3d_*_3d.h5</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;_DLC_fmpose3d_*_3d.json</span></code>. Set <code class="docutils literal notranslate"><span class="pre">fmpose_return_3d=True</span></code> to also return
+the in-memory 3D dataframe (<code class="docutils literal notranslate"><span class="pre">df_3d</span></code>) in the function output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">deeplabcut</span>
+
+<span class="n">video_path</span> <span class="o">=</span> <span class="s2">&quot;demo-video.mp4&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">deeplabcut</span><span class="o">.</span><span class="n">video_inference_superanimal</span><span class="p">(</span>
+    <span class="n">videos</span><span class="o">=</span><span class="p">[</span><span class="n">video_path</span><span class="p">],</span>
+    <span class="n">superanimal_name</span><span class="o">=</span><span class="s2">&quot;superanimal_quadruped&quot;</span><span class="p">,</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;fmpose3d_animals&quot;</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">fmpose_return_3d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># include 3D dataframe in returned payload</span>
+<span class="p">)</span>
+<span class="n">df_3d</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">video_path</span><span class="p">][</span><span class="s2">&quot;df_3d&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>
@@ -747,12 +795,12 @@ preprint={abs/2203.07436}
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="deeplabcutlive.html"
+       href="dlc-live/dlc-live-gui/user_guide/misc/timestamp_format.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">DeepLabCut-Live!</p>
+        <p class="prev-next-title">Video timestamp format</p>
       </div>
     </a>
     <a class="right-next"
@@ -788,6 +836,7 @@ preprint={abs/2203.07436}
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superanimal-topviewmouse">SuperAnimal-TopViewMouse:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superanimal-human">SuperAnimal-Human:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-using-superanimal-models-for-inference-without-training">Practical example: Using SuperAnimal models for inference without training.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-fmpose3d-monocular-3d-inference">Practical example: FMPose3D monocular 3D inference</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-using-superanimal-model-bottom-up-considering-video-animal-size">Practical example: Using SuperAnimal model bottom up, considering video/animal size.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-using-transfer-learning-with-superanimal-weights">Practical example: Using transfer learning with superanimal weights.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-failure-modes-for-superanimal-models-and-how-to-fix-it">Potential failure modes for SuperAnimal Models and how to fix it.</a></li>

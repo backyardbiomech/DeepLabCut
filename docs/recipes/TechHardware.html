@@ -30,11 +30,12 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d0fcb2aa" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -50,7 +51,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -60,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/recipes/TechHardware';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="DeepLabCut-Live!" href="../deeplabcutlive.html" />
+    <link rel="next" title="Running DeepLabCut models in real-time" href="../dlc-live/deeplabcutlive.html" />
     <link rel="prev" title="Publishing Notebooks into the Main DLC Cookbook" href="publishing_notebooks_into_the_DLC_main_cookbook.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -203,7 +204,11 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphical User Interfaces (GUIs)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../gui/PROJECT_GUI.html">Interactive Project Manager GUI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gui/napari_GUI.html">napari labeling GUI</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gui/napari_GUI.html">napari GUI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gui/napari/basic_usage.html">napari-DLC - Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui/napari/advanced_usage.html">napari-DLC - Advanced features</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DLC3 PyTorch Specific Docs</span></p>
 <ul class="nav bd-sidenav">
@@ -272,7 +277,24 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DeepLabCut-Live!</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../deeplabcutlive.html">DeepLabCut-Live!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dlc-live/deeplabcutlive.html">Running DeepLabCut models in real-time</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dlc-live/dlc-live-gui/index.html">DeepLabCut-live-GUI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dlc-live/dlc-live-gui/quickstart/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/overview.html">GUI overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/cameras_backends/camera_support.html">Camera support</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/cameras_backends/opencv_backend.html">OpenCV backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/cameras_backends/basler_backend.html">Basler backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/cameras_backends/aravis_backend.html">Aravis backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/cameras_backends/gentl_backend.html">GenTL backend</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/misc/misc_landing.html">Additional resources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/misc/modelzoo_downloads.html">Pre-trained models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dlc-live/dlc-live-gui/user_guide/misc/timestamp_format.html">Video timestamp format</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">🦄 DeepLabCut Model Zoo</span></p>
 <ul class="nav bd-sidenav">
@@ -289,7 +311,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../MISSION_AND_VALUES.html">Mission and Values of DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">A development roadmap for DeepLabCut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Governance.html">Governance Model of DeepLabCut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">How to Contribute to DeepLabCut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing to DeepLabCut</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Citations for DeepLabCut</span></p>
 <ul class="nav bd-sidenav">
@@ -520,7 +542,14 @@ Note, some info is repeated here, and will be updated as systems and hardware ch
 </section>
 <section id="computer-hardware">
 <h3>Computer Hardware:<a class="headerlink" href="#computer-hardware" title="Link to this heading">#</a></h3>
-<p>Ideally, you will use a strong GPU with <em>at least</em> 8GB memory such as the <a class="reference external" href="https://www.nvidia.com/en-us/shop/geforce/?page=1&amp;amp;limit=9&amp;amp;locale=en-us">NVIDIA GeForce 1080 Ti,  2080 Ti, or 3090</a>.  A GPU is not strictly necessary, but on a CPU the (training and evaluation) code is considerably slower (10x) for ResNets, but MobileNets and EfficientNets are slightly faster. Still, a GPU will give you a massive speed boost. You might also consider using cloud computing services like <a class="reference external" href="https://github.com/DeepLabCut/DeepLabCut/issues/47">Google cloud/amazon web services</a> or Google Colaboratory.</p>
+<p>Ideally, you will use a strong GPU with <em>at least</em> 8GB memory such as the <a class="reference external" href="https://marketplace.nvidia.com/en-us/consumer/graphics-cards/">NVIDIA GeForce 1080 Ti,  2080 Ti, or 3090</a>.  A GPU is not strictly necessary, but on a CPU the (training and evaluation) code is considerably slower (10x) for ResNets, but MobileNets and EfficientNets are slightly faster. Still, a GPU will give you a massive speed boost. You might also consider using cloud computing services like <a class="reference external" href="https://github.com/DeepLabCut/DeepLabCut/issues/47">Google cloud/amazon web services</a> or Google Colaboratory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you encounter errors during inference related to
+<code class="docutils literal notranslate"><span class="pre">torch.inference_mode</span></code> and DirectML, set the environment variable
+<code class="docutils literal notranslate"><span class="pre">DLC_DIRECTML_NO_GRAD=true</span></code> before starting Python. This switches the inference
+context to <code class="docutils literal notranslate"><span class="pre">torch.no_grad</span></code>, which is compatible with the DirectML execution path.</p>
+</div>
 </section>
 <section id="camera-hardware">
 <h3>Camera Hardware:<a class="headerlink" href="#camera-hardware" title="Link to this heading">#</a></h3>
@@ -587,11 +616,11 @@ WSL2 backend.</a></p>
       </div>
     </a>
     <a class="right-next"
-       href="../deeplabcutlive.html"
+       href="../dlc-live/deeplabcutlive.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">DeepLabCut-Live!</p>
+        <p class="prev-next-title">Running DeepLabCut models in real-time</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
