@@ -1,3 +1,9 @@
+---
+deeplabcut:
+  last_content_updated: '2026-02-10'
+  last_metadata_updated: '2026-03-06'
+  ignore: false
+---
 (governance-model)=
 # Governance Model of DeepLabCut
 (adapted from https://napari.org/stable/community/governance.html)
@@ -74,7 +80,7 @@ developer community (including the SC members) fails to reach such a consensus
 in a reasonable timeframe, the SC is the entity that resolves the issue.
 
 Members of the steering council also have the "owner" role within the [DeepLabCut GitHub organization](https://github.com/DeepLabCut/)
-and are ultimately responsible for managing the DeepLabCut GitHub account, the [@DeepLabCut](https://twitter.com/DeepLabCut)
+and are ultimately responsible for managing the DeepLabCut GitHub account, the [@DeepLabCut](https://x.com/DeepLabCut)
 twitter account, the [DeepLabCut website](http://www.DeepLabCut.org), and other similar DeepLabCut owned resources.
 
 The current steering council of DeepLabCut consists of the original developers:

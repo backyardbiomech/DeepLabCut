@@ -9,31 +9,30 @@
 # Licensed under GNU Lesser General Public License v3.0
 #
 import json
-import os
 from pathlib import Path
-from typing import Optional, Union
 
 import numpy as np
 
 from deeplabcut.modelzoo.utils import get_super_animal_scorer, get_superanimal_colormaps
-from deeplabcut.pose_estimation_pytorch.apis.videos import (
-    create_df_from_prediction,
-    video_inference,
-    VideoIterator,
-)
 from deeplabcut.pose_estimation_pytorch.apis.utils import (
+    get_filtered_coco_detector_inference_runner,
     get_inference_runners,
     get_pose_inference_runner,
-    get_filtered_coco_detector_inference_runner,
+)
+from deeplabcut.pose_estimation_pytorch.apis.videos import (
+    VideoIterator,
+    create_df_from_prediction,
+    video_inference,
 )
 from deeplabcut.pose_estimation_pytorch.modelzoo.utils import (
+    COCO_PERSON_CATEGORY_ID,
     raise_warning_if_called_directly,
 )
 from deeplabcut.utils.make_labeled_video import create_video
 
 
 class NumpyEncoder(json.JSONEncoder):
-    """Special json encoder for numpy types"""
+    """Special json encoder for numpy types."""
 
     def default(self, obj):
         if isinstance(obj, np.ndarray):
@@ -50,7 +49,7 @@ def construct_bodypart_names(max_individuals, bodyparts):
 
 
 def _video_inference_superanimal(
-    video_paths: Union[str, list],
+    video_paths: str | list,
     superanimal_name: str,
     model_cfg: dict,
     model_snapshot_path: str | Path,
@@ -60,18 +59,18 @@ def _video_inference_superanimal(
     batch_size: int = 1,
     detector_batch_size: int = 1,
     cropping: list[int] | None = None,
-    dest_folder: Optional[str] = None,
+    dest_folder: str | Path | None = None,
     output_suffix: str = "",
     plot_bboxes: bool = True,
     bboxes_pcutoff: float = 0.9,
     create_labeled_video: bool = True,
     torchvision_detector_name: str | None = None,
 ) -> dict:
-    """
-    Perform inference on a video using a superanimal model from the model zoo specified by `superanimal_name`.
-    During inference, the video is analyzed using the specified model and the results are saved in the specified
-    destination folder. The predictions are saved in the form of a .h5 file. The video with the predictions is saved
-    in the form of a .mp4 file.
+    """Perform inference on a video using a superanimal model from the model zoo
+    specified by `superanimal_name`. During inference, the video is analyzed using the
+    specified model and the results are saved in the specified destination folder. The
+    predictions are saved in the form of a .h5 file. The video with the predictions is
+    saved in the form of a .mp4 file.
 
     WARNING: This function is an internal utility function and should not be
     called directly. It is designed to be used by deeplabcut.modelzoo.api.video_inference.py
@@ -112,10 +111,9 @@ def _video_inference_superanimal(
     if superanimal_name == "superanimal_humanbody":
         if not torchvision_detector_name:
             torchvision_detector_name = "fasterrcnn_mobilenet_v3_large_fpn"
-        COCO_PERSON = 1  # COCO class ID for person
         detector_runner = get_filtered_coco_detector_inference_runner(
             model_name=torchvision_detector_name,
-            category_id=COCO_PERSON,
+            category_id=COCO_PERSON_CATEGORY_ID,
             batch_size=detector_batch_size,
             max_individuals=max_individuals,
             model_config=model_cfg,
@@ -143,11 +141,11 @@ def _video_inference_superanimal(
     if isinstance(video_paths, str):
         video_paths = [video_paths]
 
-    if dest_folder is None:
-        dest_folder = Path(video_paths[0]).parent
-
-    if not os.path.exists(dest_folder):
-        os.makedirs(dest_folder)
+    dest_folder = Path(video_paths[0]).parent if dest_folder is None else Path(dest_folder)
+    dest_folder.mkdir(parents=True, exist_ok=True)
+    if create_labeled_video:
+        superanimal_colormaps = get_superanimal_colormaps()
+        colormap = superanimal_colormaps[superanimal_name]
 
     for video_path in video_paths:
         print(f"Processing video {video_path}")
@@ -160,8 +158,7 @@ def _video_inference_superanimal(
         )
 
         output_prefix = f"{Path(video_path).stem}_{dlc_scorer}"
-        output_path = Path(dest_folder)
-        output_h5 = Path(output_path) / f"{output_prefix}.h5"
+        output_h5 = dest_folder / f"{output_prefix}.h5"
 
         output_json = output_h5.with_suffix(".json")
         if len(output_suffix) > 0:
@@ -191,7 +188,7 @@ def _video_inference_superanimal(
             dlc_scorer=dlc_scorer,
             multi_animal=True,
             model_cfg=model_cfg,
-            output_path=output_path,
+            output_path=dest_folder,
             output_prefix=output_prefix,
         )
 
@@ -199,14 +196,11 @@ def _video_inference_superanimal(
         with open(output_json, "w") as f:
             json.dump(predictions, f, cls=NumpyEncoder)
 
-        output_video = output_path / f"{output_prefix}_labeled.mp4"
-        if len(output_suffix) > 0:
-            output_video = output_video.with_stem(output_video.stem + output_suffix)
-
-        superanimal_colormaps = get_superanimal_colormaps()
-        colormap = superanimal_colormaps[superanimal_name]
-
         if create_labeled_video:
+            output_video = dest_folder / f"{output_prefix}_labeled.mp4"
+            if len(output_suffix) > 0:
+                output_video = output_video.with_stem(output_video.stem + output_suffix)
+
             create_video(
                 video_path,
                 output_h5,
@@ -214,11 +208,11 @@ def _video_inference_superanimal(
                 fps=video.fps,
                 bbox=bbox,
                 cmap=colormap,
-                output_path=str(output_video),
+                output_path=output_video,
                 plot_bboxes=plot_bboxes,
                 bboxes_list=bboxes_list,
                 bboxes_pcutoff=bboxes_pcutoff,
             )
-            print(f"Video with predictions was saved as {output_path}")
+            print(f"Video with predictions was saved as {output_video}")
 
     return results

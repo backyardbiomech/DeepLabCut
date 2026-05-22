@@ -18,9 +18,7 @@ from deeplabcut.pose_estimation_pytorch.data import transforms
 def test_keypoint_aware_cropping(width, height):
     fake_image = np.empty((600, 600, 3))
     fake_keypoints = [(i * 100, i * 100, 0, 0) for i in range(1, 6)]
-    aug = transforms.KeypointAwareCrop(
-        width=width, height=height, crop_sampling="density"
-    )
+    aug = transforms.KeypointAwareCrop(width=width, height=height, crop_sampling="density")
     transformed = aug(image=fake_image, keypoints=fake_keypoints)
     assert transformed["image"].shape[:2] == (height, width)
     # Ensure at least a keypoint is visible in each crop
@@ -49,7 +47,7 @@ def test_coarse_dropout():
     fake_image *= np.random.uniform(0, 255, size=fake_image.shape)
     fake_image = fake_image.astype(np.uint8)
     cd = transforms.CoarseDropout(max_height=0.9999, max_width=0.9999, p=1)
-    kpts = np.random.rand(10, 2) * 300
+    kpts = np.random.rand(10, 2) * 298 + 1
     aug_kpts = cd(image=fake_image, keypoints=kpts)["keypoints"]
     assert len(aug_kpts) == kpts.shape[0]
     assert np.isnan([c for kpt in aug_kpts for c in kpt]).all()

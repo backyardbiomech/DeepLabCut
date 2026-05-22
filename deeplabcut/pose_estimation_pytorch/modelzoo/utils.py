@@ -21,6 +21,9 @@ from deeplabcut.core.config import read_config_as_dict
 from deeplabcut.pose_estimation_pytorch.config.make_pose_config import add_metadata
 from deeplabcut.utils import auxiliaryfunctions
 
+# COCO category ID for the "person" class.
+COCO_PERSON_CATEGORY_ID = 1
+
 
 def get_model_configs_folder_path() -> Path:
     """Returns: the folder containing the SuperAnimal model configuration files"""
@@ -29,9 +32,7 @@ def get_model_configs_folder_path() -> Path:
 
 def get_project_configs_folder_path() -> Path:
     """Returns: the folder containing the SuperAnimal project configuration files"""
-    return (
-        Path(auxiliaryfunctions.get_deeplabcut_path()) / "modelzoo" / "project_configs"
-    )
+    return Path(auxiliaryfunctions.get_deeplabcut_path()) / "modelzoo" / "project_configs"
 
 
 def get_snapshot_folder_path() -> Path:
@@ -92,7 +93,7 @@ def load_super_animal_config(
     max_individuals: int = 30,
     device: str | None = None,
 ) -> dict:
-    """Loads the model configuration file for a model, detector and SuperAnimal
+    """Loads the model configuration file for a model, detector and SuperAnimal.
 
     Args:
         super_animal: The name of the SuperAnimal for which to create the model config.
@@ -117,16 +118,14 @@ def load_super_animal_config(
     else:
         model_config["method"] = "TD"
         if super_animal != "superanimal_humanbody":
-            detector_cfg_path = get_super_animal_model_config_path(
-                model_name=detector_name
-            )
+            detector_cfg_path = get_super_animal_model_config_path(model_name=detector_name)
             detector_cfg = read_config_as_dict(detector_cfg_path)
             model_config["detector"] = detector_cfg
     return model_config
 
 
 def download_super_animal_snapshot(dataset: str, model_name: str) -> Path:
-    """Downloads a SuperAnimal snapshot
+    """Downloads a SuperAnimal snapshot.
 
     Args:
         dataset: The name of the SuperAnimal dataset for which to download a snapshot.
@@ -144,7 +143,9 @@ def download_super_animal_snapshot(dataset: str, model_name: str) -> Path:
     model_path = snapshot_dir / model_filename
 
     download_huggingface_model(
-        model_name, target_dir=str(snapshot_dir), rename_mapping=model_filename
+        model_name,
+        target_dir=str(snapshot_dir),
+        rename_mapping={model_filename: model_filename},
     )
     if not model_path.exists():
         raise RuntimeError(f"Failed to download {model_name} to {model_path}")
@@ -159,14 +160,14 @@ def get_gpu_memory_map():
         encoding="utf-8",
     )
     gpu_memory = [int(x) for x in result.strip().split("\n")]
-    gpu_memory_map = dict(zip(range(len(gpu_memory)), gpu_memory))
+    gpu_memory_map = dict(zip(range(len(gpu_memory)), gpu_memory, strict=False))
 
     return gpu_memory_map
 
 
 def select_device():
     if torch.cuda.is_available():
-        return torch.device(f"cuda:0")
+        return torch.device("cuda:0")
     else:
         return torch.device("cpu")
 
@@ -176,15 +177,16 @@ def raise_warning_if_called_directly():
     caller_frame = inspect.getouterframes(current_frame, 2)
     caller_name = caller_frame[1].filename
 
-    if not "pose_estimation_" in caller_name:
+    if "pose_estimation_" not in caller_name:
         warnings.warn(
             f"{caller_name} is intended for internal use only and should not be called directly.",
             UserWarning,
+            stacklevel=2,
         )
 
 
 def update_config(config: dict, max_individuals: int, device: str):
-    """Loads the model configuration file for a model, detector and SuperAnimal
+    """Loads the model configuration file for a model, detector and SuperAnimal.
 
     Args:
         config: The default model configuration file.

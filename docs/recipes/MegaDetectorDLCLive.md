@@ -1,3 +1,9 @@
+---
+deeplabcut:
+  last_content_updated: '2026-02-10'
+  last_metadata_updated: '2026-03-06'
+  ignore: false
+---
 # 💚 MegaDetector+DeepLabCut 💜
 
 [DeepLabCut-Live](https://github.com/DeepLabCut/DeepLabCut-live) is an open source and free real-time package from DeepLabCut that allows for real-time, low-latency pose estimation.  [The DeepLabCut-ModelZoo](http://modelzoo.deeplabcut.org/) is our growing collection of pretrained animal models for rapid deployment; no training is typically required to use these models. MegaDetector is a free open software trained to detect animals, people, and vehicles from camera trap images. Check [here](https://github.com/microsoft/CameraTraps/blob/main/megadetector.md) for further information.
@@ -68,9 +74,9 @@ All information seen on the output image is recorded on the **Download JSON file
  "file": "image0.jpg",  //image filename uploaded
  "number_of_bb": 1,     //number of bounding boxes detected on the image
  "dlc_model": "full_dog",  //model used
- "bb_0": {              
+ "bb_0": {
   "corner_1": [          //top left corner
-   76.08082580566406,    //x  
+   76.08082580566406,    //x
    91.02932739257812     //y
   ],
   "corner_2": [          //bottom right corner
@@ -102,7 +108,7 @@ We encourage you to try out and experiment on your camera trap or other animal i
 
  <img src="https://images.squarespace-cdn.com/content/v1/57f6d51c9f74566f55ecf271/1661854010041-5RQGQTRSTKUDYU9KSTIE/foxGeneva.png?format=750ww" width="400" title="DLC" alt="DLC" align="center" vspace = "15">
 
-Or these lil' cuties 🐶🐶🙀🐶 outside a restaurant, from the [Twitter meme](https://twitter.com/standardpuppies/status/1563188163962515457?s=21&t=f2kM2HoUygyLmmAH7Ho-HQ).
+Or these lil' cuties 🐶🐶🙀🐶 outside a restaurant.
 
  <img src="https://images.squarespace-cdn.com/content/v1/57f6d51c9f74566f55ecf271/1661853654276-WEA4UUD7I1VEGHXSMIXE/pupscat.png?format=300w" width="400" title="DLC" alt="DLC" align="center" vspace = "15">
 
